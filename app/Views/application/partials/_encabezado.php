@@ -1,0 +1,1 @@
+        <p><a href="<?= base_url() ?>">Home</a> <span>Aplicación de registros diarios</span></p>
