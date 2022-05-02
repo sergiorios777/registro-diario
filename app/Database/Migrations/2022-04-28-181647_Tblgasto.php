@@ -75,7 +75,7 @@ class Tblgasto extends Migration
 
         $this->forge->addField($fields);
         $this->forge->addKey('IdGasto', true);
-        $this->forge->createTable('tblgasto');
+        $this->forge->createTable('tblgasto', true);
     }
 
     public function down()

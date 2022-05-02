@@ -8,7 +8,7 @@
         <h2>Detalle del Gasto </h2>
         <a href="/aplicacion/gastos">Regresar</a>
         <table>
-            <caption>Detalle del gasto (Id: <?php echo $gastos['IdGasto']; ?>)</caption>
+            <caption>Detalle del gasto (Id: <?php echo $gastos->IdGasto; ?>)</caption>
             <thead>
                 <tr>
                     <th scope="col">-</th>
@@ -18,7 +18,7 @@
             <tbody>
                 <tr>
                     <th scope="row">Id:</th>
-                    <td><?php echo $gastos['IdGasto']; ?></td>
+                    <td><?php echo $gastos->IdGasto; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Tipo comprobante:</th>
@@ -26,37 +26,37 @@
                 </tr>
                 <tr>
                     <th scope="row">Número:</th>
-                    <td><?php echo $gastos['NumeroComprobante']; ?></td>
+                    <td><?php echo $gastos->NumeroComprobante; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Fecha:</th>
-                    <td><?php echo $gastos['Fecha']; ?></td>
+                    <td><?php echo $gastos->Fecha; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Notas:</th>
-                    <td><?php echo $gastos['Notas']; ?></td>
+                    <td><?php echo $gastos->Notas; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Monto:</th>
-                    <td><?php echo $gastos['Monto']; ?></td>
+                    <td><?php echo $gastos->Monto; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">IGV:</th>
-                    <td><?php echo $gastos['IGV']; ?></td>
+                    <td><?php echo $gastos->IGV; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Monto total:</th>
-                    <td><?php echo $gastos['MontoTotal']; ?></td>
+                    <td><?php echo $gastos->MontoTotal; ?></td>
                 </tr>
                 <tr>
                     <th scope="row">Modificado:</th>
-                    <td><?php echo $gastos['Modificado']; ?></td>
+                    <td><?php echo $gastos->Modificado; ?></td>
                 </tr>
             </tbody>
             <tfoot>
                     <td colspan="2">
-                        <a href="/aplicacion/gastos/edit/<?php echo $gastos['IdGasto']; ?>">Editar</a>
-                        <a href="/aplicacion/gastos/delete/<?php echo $gastos['IdGasto']; ?>">Eliminar</a>
+                        <a href="/aplicacion/gastos/edit/<?php echo $gastos->IdGasto; ?>">Editar</a>
+                        <a href="/aplicacion/gastos/delete/<?php echo $gastos->IdGasto; ?>">Eliminar</a>
                     </td>
             </tfoot>
         </table>

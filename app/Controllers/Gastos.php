@@ -14,7 +14,7 @@ class Gastos extends BaseController
         $gastos = new GastosModel();
         $data = [
             'titulo' => "Gastos registrados",
-            'gastos' => $gastos->find()
+            'gastos' => $gastos->asObject()->find()
         ];
         echo view('application/gastos/listado', $data);
     }
@@ -24,13 +24,13 @@ class Gastos extends BaseController
         $gastos = new GastosModel();
         $tipocomprobante = new TipoComprobanteModel();
 
-        $registro = $gastos->find($id);
-        $tco = $tipocomprobante->find($registro['IdTipoComprobante']);
+        $registro = $gastos->asObject()->find($id);
+        $tco = $tipocomprobante->asObject()->find($registro->IdTipoComprobante);
 
         $data = [
             'titulo' => "Detalle del gasto",
             'gastos' => $registro,
-            'comprobante' => $tco['TipoComprobante']
+            'comprobante' => $tco->TipoComprobante
         ];
 
         echo view('application/gastos/detalle', $data);
@@ -51,7 +51,7 @@ class Gastos extends BaseController
         ];
         $data = [
             'titulo' => "Registrar nuevo gasto",
-            'tipocomprobante' => $tipocomprobante->find(),
+            'tipocomprobante' => $tipocomprobante->asObject()->find(),
             'gastos' => $gastos
         ];
 
@@ -87,13 +87,13 @@ class Gastos extends BaseController
         $gastos = new GastosModel();
         $tipocomprobante = new TipoComprobanteModel();
 
-        $registro = $gastos->find($id);
+        $registro = $gastos->asObject()->find($id);
 
         $data = [
             'titulo' => "Editar gasto registrado",
             'gastos' => $registro,
-            'idcomprobante' => $registro['IdTipoComprobante'],
-            'tipocomprobante' => $tipocomprobante->find()
+            'idcomprobante' => $registro->IdTipoComprobante,
+            'tipocomprobante' => $tipocomprobante->asObject()->find()
         ];
 
         echo view('application/gastos/editar', $data);
@@ -129,4 +129,5 @@ class Gastos extends BaseController
         $gastos->delete($id);
         return redirect()->to('/aplicacion/gastos')->with('mensaje', '¡Registro eliminado!');
     }
+    
 }

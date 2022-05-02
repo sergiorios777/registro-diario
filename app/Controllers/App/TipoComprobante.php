@@ -51,7 +51,7 @@ class TipoComprobante extends BaseController
             'CodigoComprobante' => $this->request->getPost('codigo')
         ];
         $tipocomprobante->insert($data);
-        return redirect()->to(basse_url() . '/aplicacion/tipocomprobante')->with('mensaje', '¡Registro creado con éxito!');
+        return redirect()->to(base_url() . '/aplicacion/tipocomprobante')->with('mensaje', '¡Registro creado con éxito!');
     }
 
     public function edit($id)

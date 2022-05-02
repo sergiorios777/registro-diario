@@ -22,7 +22,7 @@
                     <?php
 
                     foreach ($tipocomprobante as $clave => $tco) {
-                        echo '<option value="' . $tco['IdTipoComprobante'] . '">' . $tco['TipoComprobante'] . '</option>';
+                        echo '<option value="' . $tco->IdTipoComprobante . '">' . $tco->TipoComprobante . '</option>';
                     }
 
                     ?>
@@ -37,7 +37,7 @@
             <fieldset>
                 <legend>Montos de la operación:</legend>
                 <label for="aplicaigv">Aplica IGV:</label>
-                <input type="checkbox" id="aplicaigv" name="aplicaigv" value="1" <?php if ($gastos['AplicaIGV']===1) { echo "checked"; } ?> >
+                <input type="checkbox" id="aplicaigv" name="aplicaigv" value="1" <?php if (old('aplicaigv', $gastos['AplicaIGV'])) { echo "checked"; } ?>>
                 <label for="monto">Monto:</label>
                 <input type="text" name="monto" id="monto" value="<?= old('monto', $gastos['Monto']) ?>">
                 <label for="igv">IGV:</label>

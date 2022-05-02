@@ -65,7 +65,7 @@ class Tblingreso extends Migration
 
         $this->forge->addField($fields);
         $this->forge->addKey('IdIngreso', true);
-        $this->forge->createTable('tblingreso');
+        $this->forge->createTable('tblingreso', true);
     }
 
     public function down()
