@@ -34,7 +34,7 @@ class Usuario extends BaseController
             $session = session();
             unset($registro['Contrasena']);
             $session->set($usuario);
-            return redirect()->to('/aplicacion')->with('mensaje', 'Bienvenido');
+            return redirect()->to(route_to('app.inicio'))->with('mensaje', 'Bienvenido');
         }
 
         return redirect()->back()->with('mensaje', 'Usuario y/o contraseña incorrecto');
@@ -56,7 +56,7 @@ class Usuario extends BaseController
                 'Correo'     => $this->erquest->getPost('correo'),
                 'Contrasena' => $usuario->contrasenaHash($this->request->getPost('contrasena')),
             ]);
-
+            
             return redirect()->to(route_to('usuario.login'))->with('mensaje', 'Usuario creado con éxito');
         }
 

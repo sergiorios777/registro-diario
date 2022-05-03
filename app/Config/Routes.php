@@ -31,11 +31,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->add('/ingresar', 'Login::index');
-$routes->add('/crear-usuario', 'Login::registrar');
+$routes->get('/', 'Home::index', ['as' => 'web.inicio']);
+
+$routes->get('login', '\App\Controllers\Web\Usuario::login', ['as' => 'usuario.login']);
+$routes->post('login', '\App\Controllers\Web\Usuario::login_post', ['as' => 'usuario.login.post']);
+$routes->get('registrar', '\App\Controllers\Web\Usuario::registrar', ['as' => 'usuario.registrar']);
+$routes->post('registrar', '\App\Controllers\Web\Usuario::registrar_post', ['as' => 'usuario.registrar.post']);
+$routes->get('logout', '\App\Controllers\Web\Usuario::logout', ['as' => 'usuario.logout']);
+
 $routes->group('aplicacion', function ($routes) {
-    $routes->add('/', 'Application::index');
+    $routes->add('/', 'Application::index', ['as' => 'app.inicio']);
     $routes->presenter('ingresos');
     $routes->presenter('gastos');
     $routes->presenter('tipocomprobante', ['controller' => '\App\Controllers\App\TipoComprobante']);

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
-    const PASSWORD_DEFAULT = 'pass_ahead';
+    //const PASSWORD_DEFAULT = 'pass_ahead';
     protected $table = 'tblusuario';
     protected $primaryKey = 'IdUsuario';
     protected $allowedFields = ['Usuario', 'Correo', 'Contrasena', 'TipoUsuario'];

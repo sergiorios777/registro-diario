@@ -6,6 +6,14 @@
 
 <?= $this->section('contenido') ?>
     <section>
+        <?php
+        if (session('usuario'))
+        {
+            echo '<p>Usuario: ' . session('correo') . ' con el rol de ' . session('tipo');
+        }
+        ?>
+    </section>
+    <section>
         <h3>Registros diarios</h3>
         <article>
                 <header>Registro de ingresos</header>

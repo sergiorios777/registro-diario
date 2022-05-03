@@ -13,15 +13,15 @@
     <nav>
         <ul>
             <li><a href="/">Inicio</a></li>
-            <li><a href="/ingresar">Ingresar</a></li>
+            <li><a href="<?= route_to('usuario.login') ?>">Ingresar</a></li>
             <li>Acerca de</li>
         </ul>
     </nav>
     <main>
         <h1>Registro diario de ingresos y gastos</h1>
         <p>Ingrese a la aplicación para el registro de ingresos y gastos de su actividad.</p>
-        <a href="/crear-usuario">Registrarse</a>
-        <a href="/ingresar">Iniciar sesión</a>
+        <a href="<?= route_to('usuario.registrar') ?>">Registrarse</a>
+        <a href="<?= route_to('usuario.login') ?>">Iniciar sesión</a>
     </main>
     <footer>
         <p>Este es el pie de página</p>

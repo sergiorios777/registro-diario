@@ -10,7 +10,7 @@
     <header>
         <?= $this->include('web/usuario/partials/_encabezado') ?>
     </header>
-    <?= view('partials/_mensaje') ?>
+    <?= view('web/usuario/partials/_mensaje') ?>
     <main>
         <?= $this->renderSection('contenido') ?>
     </main>
