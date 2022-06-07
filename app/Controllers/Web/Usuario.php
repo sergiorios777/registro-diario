@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controllers\Web;
+use App\Models\UsuarioModel;
 use App\Controllers\BaseController;
 use \CodeIgniter\Exceptions\PageNotFoundExceptions;
-use App\Models\UsuarioModel;
 
 class Usuario extends BaseController
 {
@@ -33,7 +33,7 @@ class Usuario extends BaseController
         {
             $session = session();
             unset($registro['Contrasena']);
-            $session->set($usuario);
+            $session->set($registro);
             return redirect()->to(route_to('app.inicio'))->with('mensaje', 'Bienvenido');
         }
 
@@ -53,7 +53,7 @@ class Usuario extends BaseController
         {
             $usuario->insert([
                 'Usuario'    => $this->request->getPost('usuario'),
-                'Correo'     => $this->erquest->getPost('correo'),
+                'Correo'     => $this->request->getPost('correo'),
                 'Contrasena' => $usuario->contrasenaHash($this->request->getPost('contrasena')),
             ]);
             
