@@ -22,10 +22,10 @@ class Usuario extends BaseController
 
     public function login_post()
     {
-        $usuario = new UsuarioModel();
-        $correo = $this->require->getPost('correo');
-        $contrasena = $this->require->getPost('contrasena');
-        $registro = $usuario->select('IdUsuario, Usuario, Correo, Contrasena, TipoUsuario')->orWhere('Correo', $correo)->orWhere('Usuario', $correo)->first();
+        $usuario    = new UsuarioModel();
+        $correo     = $this->request->getPost('correo');
+        $contrasena = $this->request->getPost('contrasena');
+        $registro   = $usuario->select('IdUsuario, Usuario, Correo, Contrasena, TipoUsuario')->orWhere('Correo', $correo)->orWhere('Usuario', $correo)->first();
 
         if (!$registro) return redirect()->back()->with('mensaje', 'Usuario y/o contraseña incorrecto');
 

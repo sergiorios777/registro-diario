@@ -11,6 +11,6 @@
                 <li><a href="<?= base_url() ?>/aplicacion/tipogasto">Tipo de gastos</a></li>
             </ul>
             <ul>
-                <li><a href="<?= base_url() ?>/salir">Cerrar sesión</a></li>
+                <li><a href="<?= base_url() ?>/logout">Cerrar sesi&oacute;n</a></li>
             </ul>
         </nav>

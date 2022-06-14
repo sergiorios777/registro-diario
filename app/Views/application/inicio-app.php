@@ -6,12 +6,9 @@
 
 <?= $this->section('contenido') ?>
     <section>
-        <?php
-        if (session('usuario'))
-        {
-            echo '<p>Usuario: ' . session('correo') . ' con el rol de ' . session('tipo');
-        }
-        ?>
+        <?php if (session('usuario')): ?>
+            <p>Usuario: <?= session('correo') ?> con el rol de <?= session('tipo') ?> </p>
+        <?php endif ?>
     </section>
     <section>
         <h3>Registros diarios</h3>

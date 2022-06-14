@@ -16,7 +16,7 @@
                 <li><a href="/aplicacion">Inicio</a></li>
                 <li><a href="/aplicacion/ingresos">Ingresos</a></li>
                 <li><a href="/aplicacion/gastos">Gastos</a></li>
-                <li><a href="/salir">Cerrar sesión</a></li>
+                <li><a href="/logout">Cerrar sesión</a></li>
             </ul>
         </nav>
     </aside>

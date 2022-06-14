@@ -3,6 +3,7 @@
         <?= view('web/usuario/partials/_form-errors') ?>
         <form action="<?= route_to('usuario.registrar.post') ?>" method="post">
             <caption>Crear usuario</caption>
+            <?= csrf_field() ?>
             <label for="correo">Correo:
                 <input type="email" name="correo" id="correo" placeholder="algun@correo.com">
             </label>
