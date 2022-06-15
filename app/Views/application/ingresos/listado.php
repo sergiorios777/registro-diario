@@ -26,15 +26,15 @@
                 $numero=0;
                 foreach ($ingresos as $key => $ing): ?>
                 <tr>
-                    <td hidden><?php echo $ing['IdIngreso']; ?></td>
+                    <td hidden><?php echo $ing->IdIngreso; ?></td>
                     <td><?php $numero += 1; echo $numero; ?></td>
-                    <td><?php echo $ing['Fecha']; ?></td>
-                    <td><?php echo $ing['Notas']; ?></td>
-                    <td><?php echo $ing['Monto']; $total += $ing['Monto']; ?></td>
+                    <td><?php echo $ing->Fecha; ?></td>
+                    <td><?php echo $ing->Notas; ?></td>
+                    <td><?php echo $ing->MontoTotal; $total += $ing->MontoTotal; ?></td>
                     <td>
-                        <a href="<?= base_url() ?>/aplicacion/ingresos/show/<?php echo $ing['IdIngreso']; ?>">Detalle</a>
-                        <a href="<?= base_url() ?>/aplicacion/ingresos/edit/<?php echo $ing['IdIngreso']; ?>">Editar</a>
-                        <a href="<?= base_url() ?>/aplicacion/ingresos/delete/<?php echo $ing['IdIngreso']; ?>">Eliminar</a>
+                        <a href="<?= base_url() ?>/aplicacion/ingresos/show/<?php echo $ing->IdIngreso; ?>">Detalle</a>
+                        <a href="<?= base_url() ?>/aplicacion/ingresos/edit/<?php echo $ing->IdIngreso; ?>">Editar</a>
+                        <a href="<?= base_url() ?>/aplicacion/ingresos/delete/<?php echo $ing->IdIngreso; ?>">Eliminar</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -47,12 +47,12 @@ class Gastos extends BaseController
             'AplicaIGV' => '',
             'Monto' => '',
             'IGV' => '',
-            'MontoTotal' => ''
+            'MontoTotal' => '',
         ];
         $data = [
             'titulo' => "Registrar nuevo gasto",
             'tipocomprobante' => $tipocomprobante->asObject()->find(),
-            'gastos' => $gastos
+            'gastos' => $gastos,
         ];
 
         echo view('application/gastos/nuevo', $data);
@@ -71,7 +71,7 @@ class Gastos extends BaseController
                 'AplicaIGV' => $this->request->getPost('aplicaigv'),
                 'Monto' => $this->request->getPost('monto'),
                 'IGV' => $this->request->getPost('igv'),
-                'MontoTotal' => $this->request->getPost('montototal')
+                'MontoTotal' => $this->request->getPost('montototal'),
             ];
             $gastos->insert($data);
         } else {

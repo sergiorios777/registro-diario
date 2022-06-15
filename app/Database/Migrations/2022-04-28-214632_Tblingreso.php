@@ -58,6 +58,16 @@ class Tblingreso extends Migration
                 'constraint'    => '10,6',
                 'default'        => 0.000000,
             ],
+            'IGV'      => [
+                'type'           => 'DECIMAL',
+                'constraint'    => '10,6',
+                'default'        => 0.000000,
+            ],
+            'MontoTotal'      => [
+                'type'           => 'DECIMAL',
+                'constraint'    => '10,6',
+                'default'        => 0.000000,
+            ],
             'Modificado'      => [
                 'type'           => 'DATETIME',
             ]
