@@ -5,11 +5,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('contenido') ?>
-    <section>
-        <?php if (session('usuario')): ?>
-            <p>Usuario: <?= session('correo') ?> con el rol de <?= session('tipo') ?> </p>
-        <?php endif ?>
-    </section>
+    <?= $this->include('application/partials/_session') ?>
     <section>
         <h3>Registros diarios</h3>
         <article>
