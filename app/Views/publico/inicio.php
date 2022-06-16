@@ -17,7 +17,7 @@
         <p>Aplicación de registros diarios</p>
     </header>
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper light-blue darken-2">
             <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">Inicio</a></li>
@@ -33,12 +33,27 @@
         <li><a href="#!">Acerca de</a></li>
         <?php print $this->include('application/partials/_session') ?>
     </ul>
+
+    <div class="row">
     <main>
+        <div class="col s12">
         <h1>Registro diario de ingresos y gastos</h1>
         <p>Ingrese a la aplicación para el registro de ingresos y gastos de su actividad.</p>
-        <a href="<?= route_to('usuario.registrar') ?>">Registrarse</a>
-        <a href="<?= route_to('usuario.login') ?>">Iniciar sesión</a>
+        </div>
+        
+        <div class="col s6 m3 offset-m3">
+        <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.registrar') ?>">Registrarse</a>
+        </div>
+
+        <div class="col s6 m3">
+        <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.login') ?>">Iniciar sesión</a>
+        </div>
+        
     </main>
+    </div>
+
+    <div class="divider"></div>
+
     <footer>
         <p>Este es el pie de página</p>
     </footer>
