@@ -7,8 +7,6 @@ use App\Models\TipoComprobanteModel;
 
 class Gastos extends BaseController
 {
-    
-
     public function index()
     {
         $gastos = new GastosModel();
@@ -103,7 +101,7 @@ class Gastos extends BaseController
     {
         $gastos = new GastosModel();
 
-        if ($this->request->getMethod() === 'post'  && $this->validate('gastosRules')) {
+        if ($this->request->getMethod() === 'post' && $this->validate('gastosRules')) {
             $data = [
                 'IdTipoComprobante' => $this->request->getPost('tipo'),
                 'NumeroComprobante' => $this->request->getPost('comprobante'),

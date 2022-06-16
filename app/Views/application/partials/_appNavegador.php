@@ -10,7 +10,5 @@
                 <li><a href="<?= base_url() ?>/aplicacion/tipocomprobante">Tipo de comprobante</a></li>
                 <li><a href="<?= base_url() ?>/aplicacion/tipogasto">Tipo de gastos</a></li>
             </ul>
-            <ul>
-                <li><a href="<?= base_url() ?>/logout">Cerrar sesi&oacute;n</a></li>
-            </ul>
+            <?php print $this->include('application/partials/_session'); ?>
         </nav>

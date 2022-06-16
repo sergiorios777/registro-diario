@@ -16,6 +16,7 @@
             <li><a href="<?= route_to('usuario.login') ?>">Ingresar</a></li>
             <li>Acerca de</li>
         </ul>
+        <?php print $this->include('application/partials/_session') ?>
     </nav>
     <main>
         <h1>Registro diario de ingresos y gastos</h1>

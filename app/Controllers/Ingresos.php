@@ -60,7 +60,7 @@ class Ingresos extends BaseController
     {
         $ingresos = new IngresosModel();
 
-        if ($this->validate('ingresosRules'))
+        if ($this->request->getMethod() === 'post' && $this->validate('ingresosRules'))
         {
             $data = [
                 'IdTipoComprobante' => $this->request->getPost('tipo'),
@@ -91,9 +91,9 @@ class Ingresos extends BaseController
         $registro = $ingresos->asObject()->find($id);
 
         $data = [
-            'titulo' => "Editar ingreso registrado",
-            'ingresos' => $registro,
-            'idcomprobante' => (isset($registro->IdTipoComprobante)) ? $registro->IdTipoComprobante : 0,
+            'titulo'          => "Editar ingreso registrado",
+            'ingresos'        => $registro,
+            'idcomprobante'   => (isset($registro->IdTipoComprobante)) ? $registro->IdTipoComprobante : 0,
             'tipocomprobante' => $tipocomprobante->asObject()->find()
         ];
 
@@ -104,7 +104,7 @@ class Ingresos extends BaseController
     {
         $ingresos = new IngresosModel();
 
-        if ($this->validate('ingresosRules'))
+        if ($this->request->getMethod() === 'post' && $this->validate('ingresosRules'))
         {
             $data = [
                 'IdTipoComprobante' => $this->request->getPost('tipo'),
@@ -123,15 +123,13 @@ class Ingresos extends BaseController
             session()->setFlashData(['validation' => $this->validator]);
             return redirect()->back()->withInput();
         }
-
-        
-        return redirect()->to(base_url() . '/aplicacion/ingresos/edit/' . $id)->with('mensaje', '¡Registro actualizado con éxito!');
+        return redirect()->to('/aplicacion/ingresos/edit/' . $id)->with('mensaje', '¡Registro actualizado con éxito!');
     }
 
     public function delete($id)
     {
         $ingresos = new IngresosModel();
         $ingresos->delete($id); 
-        return redirect()->to(base_url() . '/aplicacion/ingresos')->with('mensaje', '¡Registro eliminado!');
+        return redirect()->to('/aplicacion/ingresos')->with('mensaje', '¡Registro eliminado!');
     }
 }

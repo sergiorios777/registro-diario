@@ -45,7 +45,6 @@ class Validation
         'comprobante' => 'required|max_length[25]',
         'fecha'       => 'required|valid_date',
         'notas'       => 'max_length[255]',
-        'aplicaigv'   => 'required',
         'monto'       => 'required|decimal',
         'igv'         => 'decimal',
         'montototal'  => 'required|decimal',
@@ -67,9 +66,6 @@ class Validation
         'notas' => [
             'max_length[255]' => 'Las notas deben tener un m&aacute;ximo 255 caracteres.',
         ],
-        'aplicaigv' => [
-            'required'        => 'Debe indicar si aplica o no el IGV.',
-        ],
         'monto' => [
             'required'        => 'Debe indicar un monto.',
             'decimal'         => 'El monto debe ser un valor num&eacute;rico.'
@@ -88,7 +84,6 @@ class Validation
         'comprobante' => 'required|max_length[25]',
         'fecha' => 'required|valid_date',
         'notas' => 'max_length[255]',
-        'aplicaigv' => 'required',
         'monto' => 'required|decimal',
         'igv' => 'decimal',
         'montototal' => 'required|decimal',
@@ -109,9 +104,6 @@ class Validation
         ],
         'notas' => [
             'max_length[255]' => 'Las notas deben tener un máximo 255 caracteres.',
-        ],
-        'aplicaigv' => [
-            'required' => 'Debe indicar si aplica o no el IGV.',
         ],
         'monto' => [
             'required' => 'Debe indicar un monto.',
