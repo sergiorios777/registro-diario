@@ -1,1 +1,1 @@
-        <p><a href="<?= base_url() ?>">Home</a> <span>Aplicación de registros diarios</span></p>
+        <p><a href="<?= base_url() ?>"><i class="material-icons">home</i></a> <span>Aplicaci&oacute;n de registros diarios</span></p>
