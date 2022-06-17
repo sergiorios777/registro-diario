@@ -36,26 +36,27 @@
 
     <div class="row">
     <main>
-        <div class="col s12">
-        <h1>Registro diario de ingresos y gastos</h1>
-        <p>Ingrese a la aplicación para el registro de ingresos y gastos de su actividad.</p>
+        <div class="col s12 m6 l5 xl4 offset-m6 offset-l7 offset-xl8">
+            <h5>Registro diario de ingresos y gastos</h5>
+            <p>Ingrese a la aplicación para el registro de ingresos y gastos de su actividad.</p>
+            <p>Si usted no tiene usuario, por favor registrarse utilizando en bot&oacute;n de abajo.</p>
+            <div class="center">
+                <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.login') ?>">Iniciar sesión</a>
+                <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.registrar') ?>">Registrarse</a>
+            </div>
         </div>
-        
-        <div class="col s6 m3 offset-m3">
-        <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.registrar') ?>">Registrarse</a>
-        </div>
-
-        <div class="col s6 m3">
-        <a class="btn waves-effect waves-light light-blue darken-2" href="<?= route_to('usuario.login') ?>">Iniciar sesión</a>
-        </div>
-        
     </main>
     </div>
 
     <div class="divider"></div>
 
-    <footer>
-        <p>Este es el pie de página</p>
+    <footer class="page-footer light-blue darken-1">
+        <div class="container">
+            <p>Este es el pie de página</p>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">&copy;2022 Bonsai777</div>
+        </div>
     </footer>
 </div>
 
