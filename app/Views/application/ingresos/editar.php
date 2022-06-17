@@ -8,39 +8,48 @@
         <h2>Actualizar ingreso registrado </h2>
         <a href="<?= base_url() ?>/aplicacion/ingresos">Regresar</a>
         <?= view("application/partials/_mensaje") ?>
-        <form action="<?= base_url() ?>/aplicacion/ingresos/update/<?= $ingresos['IdIngreso'] ?>" method="post">
+        <div>
+            <?= session()->getFlashdata('error') ?>
+            <?= service('validation')->listErrors() ?>
+        </div>
+        <form action="/aplicacion/ingresos/update/<?= $ingresos->IdIngreso ?>" method="post">
             <caption>Registrar un nuevo ingreso</caption>
             <fieldset>
                 <legend>Información general:</legend>
+                <?= csrf_field() ?>
                 <label for="tipo">Tipo de comprobante:</label>
                 <select name="tipo" id="tipo">
                     <option value="">---Seleccione el comprobante---</option>
                     <?php
 
                     foreach ($tipocomprobante as $clave => $tco) {
-                        $selectAttr = ($tco['IdTipoComprobante']===$idcomprobante) ? "selected" :  "";
-                        echo '<option value="' . $tco['IdTipoComprobante'] . '" ' . $selectAttr . '>' . $tco['TipoComprobante'] . '</option>';
+                        if ($tco->IdTipoComprobante===$idcomprobante) {
+                            $selectAttr = "selected";
+                        } else {
+                            $selectAttr = "";
+                        }
+                        echo '<option value="' . $tco->IdTipoComprobante . '" ' . $selectAttr . '>' . $tco->TipoComprobante . '</option>';
                     }
 
                     ?>
                 </select>
                 <label for="comprobante">Número de comprobante:</label>
-                <input type="text" name="comprobante" id="comprobante" value="<?= $ingresos['NumeroComprobante'] ?>">
+                <input type="text" name="comprobante" id="comprobante" value="<?= old('comprobante', $ingresos->NumeroComprobante) ?>">
                 <label for="fecha">Fecha:</label>
-                <input type="date" name="fecha" id="fecha" value="<?= $ingresos['Fecha'] ?>">
+                <input type="date" name="fecha" id="fecha" value="<?= old('fecha', $ingresos->Fecha) ?>">
                 <label for="textarea">Notas:</label>
-                <textarea name="notas" id="notas" cols="30" rows="10"><?= $ingresos['Notas'] ?></textarea>
+                <textarea name="notas" id="notas" cols="30" rows="10"><?= old('notas', $ingresos->Notas) ?></textarea>
             </fieldset>
             <fieldset>
                 <legend>Montos de la operación:</legend>
                 <label for="aplicaigv">Aplica IGV:</label>
-                <input type="checkbox" id="aplicaigv" name="aplicaigv" value="no">
+                <input type="checkbox" id="aplicaigv" name="aplicaigv" value="1" <?php if (old('aplicaigv', $ingresos->AplicaIGV)) { echo "checked"; } ?>>
                 <label for="monto">Monto:</label>
-                <input type="text" name="monto" id="monto" value="0">
+                <input type="text" name="monto" id="monto" value="<?= old('monto', $ingresos->Monto) ?>">
                 <label for="igv">IGV:</label>
-                <input type="text" name="igv" id="igv" value="0">
+                <input type="text" name="igv" id="igv" value="<?= old('igv', $ingresos->IGV) ?>">
                 <label for="montototal">Monto total:</label>
-                <input type="text" name="montototal" id="montototal" value="<?= $ingresos['Monto'] ?>">
+                <input type="text" name="montototal" id="montototal" value="<?= old('montototal', $ingresos->MontoTotal) ?>">
             </fieldset>
             <button type="submit">
                 Actualizar

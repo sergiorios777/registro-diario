@@ -40,12 +40,50 @@ class Validation
     //--------------------------------------------------------------------
     // Rules
     //--------------------------------------------------------------------
+    public $ingresosRules = [
+        'tipo'        => 'required|numeric',
+        'comprobante' => 'required|max_length[25]',
+        'fecha'       => 'required|valid_date',
+        'notas'       => 'max_length[255]',
+        'monto'       => 'required|decimal',
+        'igv'         => 'decimal',
+        'montototal'  => 'required|decimal',
+    ];
+    
+    public $ingresosRules_errors = [
+        'tipo' => [
+            'required' => 'Debe seleccionar un comprobante.',
+            'numeric'  => 'Debe seleccionar un comprobante de la lista.',
+        ],
+        'comprobante' => [
+            'required'       => 'Debe indicar el n&uacute;mero de comprobante.',
+            'max_length[25]' => 'El comrpobante debe tener un m&aacute;ximo de 25 caracteres.',
+        ],
+        'fecha' => [
+            'required'       => 'Debe ingresar una fecha.',
+            'valid_date'     => 'Indique o seleccione una fecha v&aacute;lida.',
+        ],
+        'notas' => [
+            'max_length[255]' => 'Las notas deben tener un m&aacute;ximo 255 caracteres.',
+        ],
+        'monto' => [
+            'required'        => 'Debe indicar un monto.',
+            'decimal'         => 'El monto debe ser un valor num&eacute;rico.'
+        ],
+        'igv' => [
+            'decimal'         => 'El IGV debe ser un valor num&eacute;rico.'
+        ],
+        'montototal' => [
+            'required'        => 'Debe indicar un monto total.',
+            'decimal'         => 'El monto total debe ser un valor num&eacute;rico.'
+        ]
+    ];
+
     public $gastosRules = [
         'tipo' => 'required|numeric',
         'comprobante' => 'required|max_length[25]',
         'fecha' => 'required|valid_date',
         'notas' => 'max_length[255]',
-        'aplicaigv' => 'required',
         'monto' => 'required|decimal',
         'igv' => 'decimal',
         'montototal' => 'required|decimal',
@@ -66,9 +104,6 @@ class Validation
         ],
         'notas' => [
             'max_length[255]' => 'Las notas deben tener un máximo 255 caracteres.',
-        ],
-        'aplicaigv' => [
-            'required' => 'Debe indicar si aplica o no el IGV.',
         ],
         'monto' => [
             'required' => 'Debe indicar un monto.',

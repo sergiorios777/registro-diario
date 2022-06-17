@@ -7,8 +7,6 @@ use App\Models\TipoComprobanteModel;
 
 class Gastos extends BaseController
 {
-    
-
     public function index()
     {
         $gastos = new GastosModel();
@@ -47,12 +45,12 @@ class Gastos extends BaseController
             'AplicaIGV' => '',
             'Monto' => '',
             'IGV' => '',
-            'MontoTotal' => ''
+            'MontoTotal' => '',
         ];
         $data = [
             'titulo' => "Registrar nuevo gasto",
             'tipocomprobante' => $tipocomprobante->asObject()->find(),
-            'gastos' => $gastos
+            'gastos' => $gastos,
         ];
 
         echo view('application/gastos/nuevo', $data);
@@ -71,7 +69,7 @@ class Gastos extends BaseController
                 'AplicaIGV' => $this->request->getPost('aplicaigv'),
                 'Monto' => $this->request->getPost('monto'),
                 'IGV' => $this->request->getPost('igv'),
-                'MontoTotal' => $this->request->getPost('montototal')
+                'MontoTotal' => $this->request->getPost('montototal'),
             ];
             $gastos->insert($data);
         } else {
@@ -103,7 +101,7 @@ class Gastos extends BaseController
     {
         $gastos = new GastosModel();
 
-        if ($this->request->getMethod() === 'post'  && $this->validate('gastosRules')) {
+        if ($this->request->getMethod() === 'post' && $this->validate('gastosRules')) {
             $data = [
                 'IdTipoComprobante' => $this->request->getPost('tipo'),
                 'NumeroComprobante' => $this->request->getPost('comprobante'),

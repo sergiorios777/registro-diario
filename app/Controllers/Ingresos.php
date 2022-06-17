@@ -12,7 +12,7 @@ class Ingresos extends BaseController
         $ingresos = new IngresosModel();
         $data = [
             'titulo' => "Ingresos registrados",
-            'ingresos' => $ingresos->find()
+            'ingresos' => $ingresos->asObject()->find()
         ];
         echo view('application/ingresos/listado', $data);
     }
@@ -22,10 +22,10 @@ class Ingresos extends BaseController
         $ingresos = new IngresosModel();
         $tipocomprobante = new TipoComprobanteModel();
         
-        $registro = $ingresos->find($id);
-        $tco = $tipocomprobante->find($registro['IdTipoComprobante']);
+        $registro = $ingresos->asObject()->find($id);
+        $tco = $tipocomprobante->asObject()->find($registro->IdTipoComprobante);
 
-        $comprobante = (isset($tco['TipoComprobante'])) ? $tco['TipoComprobante'] : '[No seleccionado]';
+        $comprobante = (isset($tco->TipoComprobante)) ? $tco->TipoComprobante : '[No seleccionado]';
         
         $data = [
             'titulo' => "Detalle del ingreso",
@@ -38,9 +38,20 @@ class Ingresos extends BaseController
     public function new()
     {
         $tipocomprobante = new TipoComprobanteModel();
+        $ingresos = [
+            'IdTipoComprobante' => '',
+            'NumeroComprobante' => '',
+            'Fecha'             => '',
+            'Notas'             => '',
+            'AplicaIGV'         => '',
+            'Monto'             => '',
+            'IGV'               => '',
+            'MontoTotal'        => '',
+        ];
         $data = [
-            'titulo' => "Registrar nuevo ingreso",
-            'tipocomprobante' => $tipocomprobante->find()
+            'titulo'            => "Registrar nuevo ingreso",
+            'tipocomprobante'   => $tipocomprobante->asObject()->find(),
+            'ingresos'          => $ingresos,
         ];
         echo view('application/ingresos/nuevo', $data);
     }
@@ -48,14 +59,27 @@ class Ingresos extends BaseController
     public function create()
     {
         $ingresos = new IngresosModel();
-        $data = [
-            'IdTipoComprobante' => $this->request->getPost('tipo'),
-            'NumeroComprobante' => $this->request->getPost('comprobante'),
-            'Fecha' => $this->request->getPost('fecha'),
-            'Notas' => $this->request->getPost('notas'),
-            'Monto' => $this->request->getPost('montototal')
-        ];
-        $ingresos->insert($data);
+
+        if ($this->request->getMethod() === 'post' && $this->validate('ingresosRules'))
+        {
+            $data = [
+                'IdTipoComprobante' => $this->request->getPost('tipo'),
+                'NumeroComprobante' => $this->request->getPost('comprobante'),
+                'Fecha'             => $this->request->getPost('fecha'),
+                'Notas'             => $this->request->getPost('notas'),
+                'AplicaIGV'         => $this->request->getPost('aplicaigv'),
+                'Monto'             => $this->request->getPost('monto'),
+                'IGV'               => $this->request->getPost('igv'),
+                'MontoTotal'        => $this->request->getPost('montototal'),
+            ];
+            $ingresos->insert($data);
+        }
+        else 
+        {
+            session()->setFlashData(['validation' => $this->validator]);
+            return redirect()->back()->withInput();
+        }
+        
         return redirect()->to('/aplicacion/ingresos')->with('mensaje', '¡Registro creado con éxito!');
     }
 
@@ -64,34 +88,48 @@ class Ingresos extends BaseController
         $ingresos = new IngresosModel();
         $tipocomprobante = new TipoComprobanteModel();
 
-        $registro = $ingresos->find($id);
+        $registro = $ingresos->asObject()->find($id);
+
         $data = [
-            'titulo' => "Editar ingreso registrado",
-            'ingresos' => $registro,
-            'idcomprobante' => (isset($registro['IdTipoComprobante'])) ? $registro['IdTipoComprobante'] : 0,
-            'tipocomprobante' => $tipocomprobante->find()
+            'titulo'          => "Editar ingreso registrado",
+            'ingresos'        => $registro,
+            'idcomprobante'   => (isset($registro->IdTipoComprobante)) ? $registro->IdTipoComprobante : 0,
+            'tipocomprobante' => $tipocomprobante->asObject()->find()
         ];
+
         echo view('application/ingresos/editar', $data);
     }
 
     public function update($id)
     {
         $ingresos = new IngresosModel();
-        $data = [
-            'IdTipoComprobante' => $this->request->getPost('tipo'),
-            'NumeroComprobante' => $this->request->getPost('comprobante'),
-            'Fecha' => $this->request->getPost('fecha'),
-            'Notas' => $this->request->getPost('notas'),
-            'Monto' => $this->request->getPost('montototal')
-        ];
-        $ingresos->update($id, $data);
-        return redirect()->to(base_url() . '/aplicacion/ingresos/edit/' . $id)->with('mensaje', '¡Registro actualizado con éxito!');
+
+        if ($this->request->getMethod() === 'post' && $this->validate('ingresosRules'))
+        {
+            $data = [
+                'IdTipoComprobante' => $this->request->getPost('tipo'),
+                'NumeroComprobante' => $this->request->getPost('comprobante'),
+                'Fecha'             => $this->request->getPost('fecha'),
+                'Notas'             => $this->request->getPost('notas'),
+                'AplicaIGV'         => $this->request->getPost('aplicaigv'),
+                'Monto'             => $this->request->getPost('monto'),
+                'IGV'               => $this->request->getPost('igv'),
+                'MontoTotal'        => $this->request->getPost('montototal')
+            ];
+            $ingresos->update($id, $data);
+        }
+        else
+        {
+            session()->setFlashData(['validation' => $this->validator]);
+            return redirect()->back()->withInput();
+        }
+        return redirect()->to('/aplicacion/ingresos/edit/' . $id)->with('mensaje', '¡Registro actualizado con éxito!');
     }
 
     public function delete($id)
     {
         $ingresos = new IngresosModel();
         $ingresos->delete($id); 
-        return redirect()->to(base_url() . '/aplicacion/ingresos')->with('mensaje', '¡Registro eliminado!');
+        return redirect()->to('/aplicacion/ingresos')->with('mensaje', '¡Registro eliminado!');
     }
 }

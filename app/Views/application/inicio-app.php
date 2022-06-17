@@ -5,7 +5,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('contenido') ?>
-    <?= $this->include('application/partials/_session') ?>
+    <?php //$this->include('application/partials/_session') ?>
     <section>
         <h3>Registros diarios</h3>
         <article>
